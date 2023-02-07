@@ -1,0 +1,9 @@
+jdbc
+https://learn.microsoft.com/en-us/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server-support-matrix?view=sql-server-ver15#java-and-jdbc-specification-support
+
+primefaces
+https://jar-download.com/artifacts/org.primefaces/primefaces
+
+
+Ejemplos
+https://www.primefaces.org/showcase/ui/panel/panelGrid.xhtml?jfwid=2eec0
