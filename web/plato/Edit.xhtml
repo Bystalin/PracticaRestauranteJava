@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!--    <ui:composition template="/template.xhtml">-->
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPlatoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPlatoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{platoController.selected.id}" title="#{bundle.EditPlatoTitle_id}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditPlatoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{platoController.selected.nombre}" title="#{bundle.EditPlatoTitle_nombre}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditPlatoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{platoController.selected.descripcion}" title="#{bundle.EditPlatoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditPlatoLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{platoController.selected.precio}" title="#{bundle.EditPlatoTitle_precio}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_precio}"/>
+                    <h:outputLabel value="#{bundle.EditPlatoLabel_imagen}" for="imagen" />
+                    <h:inputText id="imagen" value="#{platoController.selected.imagen}" title="#{bundle.EditPlatoTitle_imagen}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_imagen}"/>
+                    <h:outputLabel value="#{bundle.EditPlatoLabel_idcategoria}" for="idcategoria" />
+                    <h:selectOneMenu id="idcategoria" value="#{platoController.selected.idcategoria}" title="#{bundle.EditPlatoTitle_idcategoria}" required="true" requiredMessage="#{bundle.EditPlatoRequiredMessage_idcategoria}">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{platoController.update}" value="#{bundle.EditPlatoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPlatoViewLink}"/>
+                <br />
+                <h:commandLink action="#{platoController.prepareList}" value="#{bundle.EditPlatoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPlatoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

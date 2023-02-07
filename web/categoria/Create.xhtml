@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!--    <ui:composition template="/template.xhtml">-->
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Nueva Categoria"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <div class="card">
+                <h:form>
+
+                    <div class="formgroup-inline">
+                        <div class="field grid">
+                            <p:outputLabel for="id" styleClass="col-12 md:col-2" value="#{bundle.CreateCategoriaLabel_id}"/>
+                            <div class="col-12 md:col-10">
+                                <p:inputText id="id" value="#{categoriaController.selected.id}" 
+                                             title="#{bundle.CreateCategoriaTitle_id}" 
+                                             required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_id}"/>
+                            </div>
+                        </div>
+                        <div class="field grid">
+                            <p:outputLabel for="categoria" styleClass="col-12 md:col-2" value="#{bundle.CreateCategoriaLabel_categoria}"/>
+                            <div class="col-12 md:col-10">
+                                <p:inputText id="categoria" value="#{categoriaController.selected.categoria}" 
+                                             title="#{bundle.CreateCategoriaTitle_categoria}" 
+                                             required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_categoria}"/>
+                            </div>
+                        </div>
+
+
+                        <h:commandLink type="button" action="#{categoriaController.create}" value="#{bundle.CreateCategoriaSaveLink}" />
+                        <p:commandButton action="#{categoriaController.create}" value="Guardar" styleClass="mr-2" style="width: auto" />
+                        <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                     layout="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent;">
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <p:commandButton value="Guardar" styleClass="mr-2" style="width: auto" type="submit" action="#{categoriaController.create()}"/>
+                                    <p:commandButton value="Ver lista" styleClass="mr-2" style="width: auto" action="#{categoriaController.prepareList}" immediate="true" />
+                                    <p:button value="Regresar Inicio" style="width: auto" outcome="/index"/>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+
+                    </div>
+                </h:form>
+
+
+
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

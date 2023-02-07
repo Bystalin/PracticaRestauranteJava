@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!--    <ui:composition template="/template.xhtml">-->
+<ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPlatoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPlatoEmpty}" rendered="#{platoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{platoController.items.rowCount > 0}">
+                    <h:outputText value="#{platoController.pagination.pageFirstItem + 1}..#{platoController.pagination.pageLastItem + 1}/#{platoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{platoController.previous}" value="#{bundle.Previous} #{platoController.pagination.pageSize}" rendered="#{platoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{platoController.next}" value="#{bundle.Next} #{platoController.pagination.pageSize}" rendered="#{platoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{platoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPlatoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPlatoTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPlatoTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPlatoTitle_precio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPlatoTitle_imagen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.imagen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPlatoTitle_idcategoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcategoria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{platoController.prepareView}" value="#{bundle.ListPlatoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{platoController.prepareEdit}" value="#{bundle.ListPlatoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{platoController.destroy}" value="#{bundle.ListPlatoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{platoController.prepareCreate}" value="#{bundle.ListPlatoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPlatoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

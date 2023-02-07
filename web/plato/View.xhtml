@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!--    <ui:composition template="/template.xhtml">-->
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPlatoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPlatoLabel_id}"/>
+                    <h:outputText value="#{platoController.selected.id}" title="#{bundle.ViewPlatoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPlatoLabel_nombre}"/>
+                    <h:outputText value="#{platoController.selected.nombre}" title="#{bundle.ViewPlatoTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewPlatoLabel_descripcion}"/>
+                    <h:outputText value="#{platoController.selected.descripcion}" title="#{bundle.ViewPlatoTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewPlatoLabel_precio}"/>
+                    <h:outputText value="#{platoController.selected.precio}" title="#{bundle.ViewPlatoTitle_precio}"/>
+                    <h:outputText value="#{bundle.ViewPlatoLabel_imagen}"/>
+                    <h:outputText value="#{platoController.selected.imagen}" title="#{bundle.ViewPlatoTitle_imagen}"/>
+                    <h:outputText value="#{bundle.ViewPlatoLabel_idcategoria}"/>
+                    <h:outputText value="#{platoController.selected.idcategoria}" title="#{bundle.ViewPlatoTitle_idcategoria}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{platoController.destroyAndView}" value="#{bundle.ViewPlatoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPlatoEditLink}"/>
+                <br />
+                <h:commandLink action="#{platoController.prepareCreate}" value="#{bundle.ViewPlatoCreateLink}" />
+                <br />
+                <h:commandLink action="#{platoController.prepareList}" value="#{bundle.ViewPlatoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPlatoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

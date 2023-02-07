@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet name="css/styles.css"/>
+    </h:head>
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top"></ui:insert>
+            <div id="menuBar">
+                <h:form>
+                    <p:growl id="messages"/>
+
+                    <p:menubar>
+                        <!--                        <p:submenu label="File" icon="pi pi-fw pi-file">
+                                                    <p:submenu label="New" icon="pi pi-fw pi-plus">
+                                                        <p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark"/>
+                                                        <p:menuitem value="Video" icon="pi pi-fw pi-video"/>
+                                                    </p:submenu>
+                                                    <p:menuitem value="Delete" icon="pi pi-fw pi-trash"/>
+                                                    <p:divider />
+                                                    <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                                                </p:submenu>-->
+
+
+                        <p:submenu label="Platos" icon="pi pi-fw pi-ticket">
+                            <p:menuitem  value="Nuevo plato" outcome="/plato/Create" icon="pi pi-fw pi-user-plus"/>
+                            <p:menuitem value="Listar platos" outcome="/plato/List" icon="pi pi-fw pi-bars"/>
+                        </p:submenu>
+
+
+                        <p:divider layout="vertical"/>
+
+                        <p:submenu label="Categoria" icon="pi pi-fw pi-book">
+                            <p:menuitem value="Nueva categoria" outcome="/categoria/Create" icon="pi pi-fw pi-user-plus"/>
+                            <p:menuitem value="Listar categorias" outcome="/categoria/List" icon="pi pi-fw pi-bars"/>
+                        </p:submenu>
+
+
+                        <f:facet name="options">
+                            <!--                            <div class="ui-input-icon-left mr-2">
+                                                            <i class="pi pi-fw pi-search" />
+                                                            <p:inputText placeholder="Search"/>
+                                                        </div>-->
+                            <p:button value="Salir" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </div>
+        </div>
+        <div id="content" class="center_content">
+            <!--            <ui:insert name="content">Contenido</ui:insert>-->
+            <h1>
+                <ui:insert name="title">Default Title</ui:insert>
+            </h1>
+            <p>
+                <ui:insert name="body">Default Body</ui:insert>
+            </p>
+        </div>
+<!--        <div id="bottom">
+            <ui:insert name="bottom">Bottom</ui:insert>
+        </div>-->
+    </h:body>
+
+
+</html>
+

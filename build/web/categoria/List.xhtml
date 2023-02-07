@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!--    <ui:composition template="/template.xhtml">-->
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Lista Categoria"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <h:form id="form">
+                <p:growl id="messages" showDetail="true" />
+
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton value="Nuevo" icon="pi pi-plus" action="#{categoriaController.prepareCreate}"
+                                         styleClass="ui-button-success" style="margin-right: .5rem">
+                        </p:commandButton>
+
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+                        <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
+                            <p:dataExporter type="pdf" target="dt-categorias" fileName="Categorias" />
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <p:dataTable id="dt-categorias" widgetVar="dtcategorias" var="item" value="#{categoriaController.items}"
+                             reflow="true" class="jsfcrud_odd_row,jsfcrud_even_row"
+                             rowKey="#{item.id}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom">
+                    <f:facet name="header">
+                        <div class="products-table-header">
+                            <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                                <p:inputText id="globalFilter" onkeyup="PF('dtcategorias').filter()" placeholder="Buscar" />
+                            </span>
+                        </div>
+                    </f:facet>
+
+
+
+                    <p:column headerText="#{bundle.ListCategoriaTitle_id}" sortBy="#{item.id}" filterBy="#{item.id}">
+                        <h:outputText value="#{item.id}" />
+                    </p:column>
+                    <p:column headerText="#{bundle.ListCategoriaTitle_categoria}" sortBy="#{item.categoria}" filterBy="#{item.categoria}">
+                        <h:outputText value="#{item.categoria}" />
+                    </p:column>
+
+                    <p:column>
+
+
+                        <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-eye"
+                                         action="#{categoriaController.prepareView}" value="">
+                        </p:commandButton>
+                        <p:commandButton icon="pi pi-pencil" value="" action="#{categoriaController.prepareEdit}"
+                                         class="rounded-button ui-button-success" >
+                        </p:commandButton>
+                        <p:commandButton class="ui-button-danger rounded-button" icon="pi pi-trash"
+                                         value="" onclick="PF('wdialogDelete').show();" >
+                            <p:confirm message="Desea eliminar la categoria?" header="Confirmación"></p:confirm>
+                        </p:commandButton>
+
+                        <!--                        <p:dialog id="dialog" widgetVar="wdialogDelete" header="Aviso" modal="true" appendTo="@(body)">
+                        
+                                                </p:dialog>-->
+
+                        <p:confirmDialog global="true" widgetVar="wdialogDelete" showEffect="fade" width="300"
+                                          severity="warn" >
+                            <p:commandButton value="Sí" icon="pi pi-check" 
+                                             process="@this"  actionListener="#{categoriaController.destroy}"
+                                             oncomplete="PF('wdialogDelete').hide()" />
+                            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                             onclick="PF('wdialogDelete').hide()" />
+                        </p:confirmDialog>
+
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
